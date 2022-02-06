@@ -165,7 +165,7 @@ public class DaoCocheMYSQL implements DaoCoche {
                 System.out.println("No existe ningun coche con ese id");
                 System.out.println("COCHE OBTENIDO: "
                         + coche);
-                return null;
+                
             }
 
             return coche;

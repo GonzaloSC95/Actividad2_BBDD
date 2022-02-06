@@ -818,7 +818,7 @@ public class Vista extends javax.swing.JFrame {
             Coche cObtenido = daoCocheMYSQL
                     .obtenerCoche(idCoche);
             if (cObtenido.getId() == 0) {
-                cajaMostradorBBDD.setText("El coche con id " + cObtenido
+                cajaMostradorBBDD.setText("El coche con id " + idCoche
                         + " no esta registrado en la bbdd.");
             } else {
                 cajaMostradorBBDD.setText("Coche encontrado:\n\n");
@@ -832,6 +832,7 @@ public class Vista extends javax.swing.JFrame {
             cajaMostradorBBDD.setText("Debes introducir un id en formato numero entero ---> Ej id 1.");
         } catch (Exception e) {
             System.out.println("ERROR: " + e.getMessage());
+            
         }
     }//GEN-LAST:event_getCocheActionPerformed
 
