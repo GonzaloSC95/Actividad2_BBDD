@@ -24,7 +24,6 @@ public class Vista extends javax.swing.JFrame {
      *
      */
     public Vista() {
-        //new DaoCreateBBDD();
         //////////////////////////////
         daoCocheMYSQL = new DaoCocheMYSQL();
         daoPasajeroMYSQL = new DaoPasajeroMYSQL();
@@ -1321,7 +1320,11 @@ public class Vista extends javax.swing.JFrame {
      * @param args
      */
     public static void main(String args[]) {
-        new Vista();
+        try {
+            new Vista();
+            //new DaoCreateBBDD();
+        } catch (Exception e) {
+        }
         /////////////////////////
 
     }

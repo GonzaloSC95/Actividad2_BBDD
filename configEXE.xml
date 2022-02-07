@@ -2,8 +2,8 @@
 <launch4jConfig>
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>D:\PROYECTOS_JAVA\Actividad2_BBDD\CarLooker_dist\CarLooker.jar</jar>
-  <outfile>D:\PROYECTOS_JAVA\Actividad2_BBDD\CarLooker_dist\CarLooker.exe</outfile>
+  <jar>D:\PROYECTOS_JAVA\Actividad2_BBDD\CarLooker_dist2\CarLookerBBDD_Automatica.jar</jar>
+  <outfile>D:\PROYECTOS_JAVA\Actividad2_BBDD\CarLooker_dist2\CarLookerBBDD_Automatica.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>
   <chdir>.</chdir>
