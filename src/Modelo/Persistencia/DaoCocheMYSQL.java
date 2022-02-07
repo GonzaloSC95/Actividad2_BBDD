@@ -22,6 +22,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -47,7 +49,6 @@ public class DaoCocheMYSQL implements DaoCoche {
             conexion = DriverManager.getConnection(url, usuario, password);
         } catch (SQLException e) {
             System.out.println("Error = " + e.getMessage());
-            JOptionPane.showMessageDialog(null, "Error de conexion con la bbdd", null, JOptionPane.WARNING_MESSAGE);
             return false;
         } catch (Exception e) {
             System.out.println("Error = " + e.getMessage());
@@ -165,7 +166,7 @@ public class DaoCocheMYSQL implements DaoCoche {
                 System.out.println("No existe ningun coche con ese id");
                 System.out.println("COCHE OBTENIDO: "
                         + coche);
-                
+
             }
 
             return coche;
@@ -246,24 +247,36 @@ public class DaoCocheMYSQL implements DaoCoche {
      * @return
      */
     @Override
-    public boolean actualizarNumPasajeros(int idCoche, Connection conexion) {
-
+    public boolean actualizarNumPasajeros(Connection conexion) {
+        ArrayList idsCoches = new ArrayList();
+        ////////////////////////////////////////////////////////
+        String sqlUpdate = "UPDATE COCHES SET NUM_PASAJEROS="
+                + "(SELECT COUNT(COCHEID) FROM PASAJEROS WHERE COCHEID=?) WHERE ID=?;";
+        //---------------------------------------------------------------------------------
+        String sqlQuery = "SELECT ID FROM COCHES;";
         try {
-            String sql = "UPDATE COCHES SET NUM_PASAJEROS="
-                    + "(SELECT COUNT(COCHEID) FROM PASAJEROS WHERE COCHEID=?) WHERE ID=?;";
-            PreparedStatement sentencia = conexion.prepareStatement(sql);
-            sentencia.setInt(1, idCoche);
-            sentencia.setInt(2, idCoche);
-            ///////NUMERO DE REGISTROS ACTUALIZADOS//////////////////////
-            int numeroDeregistrosActualizados = sentencia.executeUpdate();
-            System.out.println("Número de registros actualizados " + numeroDeregistrosActualizados);
-            return true;
+            //////////////////RECOGEMOS TODOS LOS IDS DE COCHE EN UN ARRAY/////////////////////////////////
+            PreparedStatement sentenciaQuery = conexion.prepareStatement(sqlQuery);
+            ResultSet rs1 = sentenciaQuery.executeQuery();
+            while (rs1.next()) {
+                idsCoches.add(rs1.getInt(1));
+            }
+            System.out.println("IDS DE LOS COCHES " + idsCoches.toString());
+            ////////////////////////////////////////////////////////////////////////////////////////////
+            PreparedStatement sentenciaUpdate = conexion.prepareStatement(sqlUpdate);
+            for (int i = 0; i < idsCoches.size(); i++) {
+                sentenciaUpdate.setInt(1, (int) idsCoches.get(i));
+                sentenciaUpdate.setInt(2, (int) idsCoches.get(i));
+                sentenciaUpdate.addBatch();
+            }
+            System.out.println("Numero de registros actualizados = " + sentenciaUpdate.executeBatch().length);
         } catch (SQLException e) {
             System.out.println("ERROR: " + e.getMessage());
-            System.out.println("No se ha podido actualizar "
-                    + "el nº de pasajeros del coche con ID=" + idCoche);
+            System.out.println("No se ha podido actualizar la bbdd");
             return false;
         }
+        return true;
+
     }
 
 }

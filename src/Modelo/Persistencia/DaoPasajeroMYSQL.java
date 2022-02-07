@@ -41,7 +41,6 @@ public class DaoPasajeroMYSQL implements DaoPasajero {
             conexion = DriverManager.getConnection(url, usuario, password);
         } catch (SQLException e) {
             System.out.println("Error = " + e.getMessage());
-            JOptionPane.showMessageDialog(null, "Error de conexion con la bbdd", null, JOptionPane.WARNING_MESSAGE);
             return false;
         } catch (Exception e) {
             System.out.println("Error = " + e.getMessage());
@@ -130,7 +129,7 @@ public class DaoPasajeroMYSQL implements DaoPasajero {
                 return false;
             }
             System.out.println("Tabla coches actualizada: "
-                    + daoCocheMYSQL.actualizarNumPasajeros(cocheId, conexion));
+                    + daoCocheMYSQL.actualizarNumPasajeros(conexion));
         } catch (SQLException e) {
             System.out.println("Registro no borrado: " + e.getMessage());
             return false;
@@ -221,7 +220,7 @@ public class DaoPasajeroMYSQL implements DaoPasajero {
             int numRegistrosActualizados = sentencia.executeUpdate();
             System.out.println("Numero de registros actualizados = " + numRegistrosActualizados);
             //////////////////////ACTUALIZAMOS LAS PLAZAS DEL COCHE///////////////////////////
-            daoCocheMYSQL.actualizarNumPasajeros(idCoche, conexion);
+            daoCocheMYSQL.actualizarNumPasajeros(conexion);
             return true;
         } catch (SQLException ex) {
             return false;
@@ -257,7 +256,7 @@ public class DaoPasajeroMYSQL implements DaoPasajero {
                 int numeroDeregistrosActualizados = sentencia2.executeUpdate();
                 System.out.println("Numero de registros actualizados = " + numeroDeregistrosActualizados);
                 //////////////////////ACTUALIZAMOS LAS PLAZAS DEL COCHE///////////////////////////
-                daoCocheMYSQL.actualizarNumPasajeros(idCoche, conexion);
+                daoCocheMYSQL.actualizarNumPasajeros(conexion);
                 return true;
             }
         } catch (SQLException e) {

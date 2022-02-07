@@ -24,6 +24,8 @@ public class Vista extends javax.swing.JFrame {
      *
      */
     public Vista() {
+        //new DaoCreateBBDD();
+        //////////////////////////////
         daoCocheMYSQL = new DaoCocheMYSQL();
         daoPasajeroMYSQL = new DaoPasajeroMYSQL();
         ///////////////////////////////////////////
@@ -39,9 +41,9 @@ public class Vista extends javax.swing.JFrame {
         esconderDatosPasajero();
         ///////////////////////////////
         setVisible(true);
-        
+
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -784,7 +786,7 @@ public class Vista extends javax.swing.JFrame {
             System.out.println("Conexion cerrada " + daoCocheMYSQL.cerrarConexion());
         } catch (Exception e) {
             System.out.println("ERROR: " + e.getMessage());
-            cajaMostradorBBDD.setText("Error de conexion con la bbdd");
+            cajaMostradorBBDD.setText("Error de conexion con la bbdd.");
         }
     }//GEN-LAST:event_listarCochesActionPerformed
 
@@ -805,7 +807,7 @@ public class Vista extends javax.swing.JFrame {
             System.out.println("Conexion cerrada " + daoPasajeroMYSQL.cerrarConexion());
         } catch (Exception e) {
             System.out.println("ERROR: " + e.getMessage());
-            cajaMostradorBBDD.setText("Error de conexion con la bbdd");
+            cajaMostradorBBDD.setText("Error de conexion con la bbdd.");
         }
 
     }//GEN-LAST:event_listarPasajerosActionPerformed
@@ -832,7 +834,7 @@ public class Vista extends javax.swing.JFrame {
             cajaMostradorBBDD.setText("Debes introducir un id en formato numero entero ---> Ej id 1.");
         } catch (Exception e) {
             System.out.println("ERROR: " + e.getMessage());
-            
+            cajaMostradorBBDD.setText("Error de conexion con la bbdd.");
         }
     }//GEN-LAST:event_getCocheActionPerformed
 
@@ -858,6 +860,7 @@ public class Vista extends javax.swing.JFrame {
             cajaMostradorBBDD.setText("Debes introducir un id en formato numero entero ---> Ej id 1.");
         } catch (Exception e) {
             System.out.println("ERROR: " + e.getMessage());
+            cajaMostradorBBDD.setText("Error de conexion con la bbdd.");
         }
     }//GEN-LAST:event_getPasajeroActionPerformed
 
@@ -882,6 +885,7 @@ public class Vista extends javax.swing.JFrame {
             cajaMostradorBBDD.setText("Debes introducir un id en formato numero entero ---> Ej id 1.");
         } catch (Exception e) {
             System.out.println("ERROR: " + e.getMessage());
+            cajaMostradorBBDD.setText("Error de conexion con la bbdd.");
         }
     }//GEN-LAST:event_deleteCocheActionPerformed
 
@@ -906,6 +910,7 @@ public class Vista extends javax.swing.JFrame {
             cajaMostradorBBDD.setText("Debes introducir un id en formato numero entero ---> Ej id 1.");
         } catch (Exception e) {
             System.out.println("ERROR: " + e.getMessage());
+            cajaMostradorBBDD.setText("Error de conexion con la bbdd.");
         }
     }//GEN-LAST:event_deletePasajeroActionPerformed
 
@@ -936,6 +941,7 @@ public class Vista extends javax.swing.JFrame {
             }
         } catch (Exception e) {
             System.out.println("ERROR: " + e.getMessage());
+            cajaMostradorBBDD.setText("Error de conexion con la bbdd.");
         }
 
     }//GEN-LAST:event_addCocheActionPerformed
@@ -945,7 +951,7 @@ public class Vista extends javax.swing.JFrame {
             String nomb = nombrePasajeroTexto.getText();
             String ed = edadPasajeroTexto.getText();
             String pes = controlador.numeroDecimalSinComas(pesoPasajeroTexto.getText());
-            
+
             if (controlador.camposVaciosPasajero(nomb, ed,
                     pes) == true) {
                 cajaMostradorBBDD.setText("Debes rellenar todos los atributos del pasajero "
@@ -975,6 +981,7 @@ public class Vista extends javax.swing.JFrame {
                     + "peso 45.55, edad 40.");
         } catch (Exception e) {
             System.out.println("ERROR: " + e.getMessage());
+            cajaMostradorBBDD.setText("Error de conexion con la bbdd.");
         }
     }//GEN-LAST:event_createPasajeroActionPerformed
 
@@ -1011,6 +1018,7 @@ public class Vista extends javax.swing.JFrame {
             cajaMostradorBBDD.setText("Debes introducir un id en formato numero entero ---> Ej id 1.");
         } catch (Exception e) {
             System.out.println("ERROR: " + e.getMessage());
+            cajaMostradorBBDD.setText("Error de conexion con la bbdd.");
         }
     }//GEN-LAST:event_modificarCocheActionPerformed
     /////////AÑADIR UN PASAJERO A UN COCHE////////////////////////////
@@ -1031,7 +1039,9 @@ public class Vista extends javax.swing.JFrame {
                 }
             } else {
                 cajaMostradorBBDD.setText("Ocurrio un error al intentar actualizar la bbdd "
-                        + "o tal vez ese pasajero ya no exista.");
+                        + "o tal vez ese pasajero ya no exista.\n\n");
+                cajaMostradorBBDD.append("También debes tener en cuenta que la capacidad maxima "
+                        + "de pasajeros por cada coche, es de 5 pasajeros.");
             }
             //////////////////////////////////////////
             System.out.println("Conexion cerrada " + daoPasajeroMYSQL.cerrarConexion());
@@ -1041,6 +1051,7 @@ public class Vista extends javax.swing.JFrame {
             cajaMostradorBBDD.setText("Debes introducir un id en formato numero entero ---> Ej id 1.");
         } catch (Exception e) {
             System.out.println("ERROR: " + e.getMessage());
+            cajaMostradorBBDD.setText("Error de conexion con la bbdd.");
         }
     }//GEN-LAST:event_addPasajeroA_CocheActionPerformed
     /////////SACAR A UN PASAJERO DE UN COCHE////////////////////////////
@@ -1071,6 +1082,7 @@ public class Vista extends javax.swing.JFrame {
             cajaMostradorBBDD.setText("Debes introducir un id en formato numero entero ---> Ej id 1.");
         } catch (Exception e) {
             System.out.println("ERROR: " + e.getMessage());
+            cajaMostradorBBDD.setText("Error de conexion con la bbdd.");
         }
     }//GEN-LAST:event_sacarPasajeroDe_CocheActionPerformed
     /////LISTAR A TODOS LOS PASAJEROS DE UN COCHE///////////////////////////////////////////
@@ -1096,7 +1108,8 @@ public class Vista extends javax.swing.JFrame {
             cajaMostradorBBDD.setText("Debes introducir un id en formato numero entero ---> Ej id 1.");
         } catch (Exception e) {
             System.out.println("ERROR: " + e.getMessage());
-            cajaMostradorBBDD.setText("No hay ningún pasajero en ese coche.");
+            cajaMostradorBBDD.setText("Ha surgido un error al intentar conectarse a la bbdd, "
+                    + "o puede que no haya ningún pasajero en ese coche.");
         }
     }//GEN-LAST:event_listarPasajerosDe_CocheActionPerformed
     ////////////////MIS METODOS/////////////////////////////
@@ -1185,7 +1198,7 @@ public class Vista extends javax.swing.JFrame {
         edadPasajeroTexto.setVisible(true);
         pesoPasajeroLabel.setVisible(true);
         pesoPasajeroTexto.setVisible(true);
-        
+
     }
 
     //QUITAMOS TODOS LO CAMPOS DEL PASAJERO//////////////////////
@@ -1249,9 +1262,9 @@ public class Vista extends javax.swing.JFrame {
         nombrePasajeroTexto.setText("");
         edadPasajeroTexto.setText("");
         pesoPasajeroTexto.setText("");
-        
+
     }
-    
+
     private void limpiarCajasDatos() {
         /////DATOS COCHE////////
         IdCocheTexto.setText("");

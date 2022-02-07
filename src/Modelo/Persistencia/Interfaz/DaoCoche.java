@@ -65,10 +65,9 @@ public interface DaoCoche {
 
     /**
      *
-     * @param idCoche
      * @param conexion
      * @return
      */
-    public boolean actualizarNumPasajeros(int idCoche, Connection conexion);
+    public boolean actualizarNumPasajeros(Connection conexion);
 
 }
